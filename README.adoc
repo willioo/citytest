@@ -133,6 +133,7 @@ Command::
 +
 [source,bash]
 ----
+!#/bin/bash
 wget http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-linux-amd64.tgz
 tar -zxvf cf-linux-amd64.tgz
 ./cf --version
