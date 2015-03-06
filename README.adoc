@@ -49,9 +49,8 @@ Password:: the encrypted password you copied a moment ago
 
 == Create the Initial Build Job
 
-. Navigate back to Jenkins Home.
-
-. Click +New Job+, give it the name +citytest+ and select ``Build a free-style software project.'' Then click +OK+.
+. Click +New Job+, give it the name +citytest-uniquetoken+ and select ``Build a free-style software project.'' Then
+click +OK+. Replace in the script below +uniquetoken+ with something like your username!
 
 . Under +Source Code Management+, select +Git+, and supply your repository URL (e.g. `https://github.com/<YOUR_GIT_USERNAME>/citytest`).
 
@@ -60,7 +59,7 @@ Password:: the encrypted password you copied a moment ago
 . Under +Build Environment+, select +Gradle-Artifactory Integration+.
 +
 * Select your Artifactory server.
-* Select +libs-releases_local+ as the +Publishing Respoitory+.
+* Select +libs-releases_local+ as the +Publishing Repository+.
 * Ensure the following are checked:
 ** Capture and publish build info
 ** Allow promotion of non-staged builds
@@ -80,7 +79,8 @@ Tasks:: +clean assemble+
 
 . Navigate back to Jenkins Home.
 
-. Click +New Job+, give it the name +citytest-deploy+ and select ``Build a free-style software project.'' Then click +OK+.
+. Click +New Job+, give it the name +citytest-uniquetoken-deploy+ and select ``Build a free-style software project.''
+ Then click +OK+.
 
 . Check +This build is parameterized+.
 
@@ -104,15 +104,15 @@ def getAllBuildNumbers(Job job) {
   return buildNumbers
 }
 
-def buildJob = Jenkins.instance.getItemByFullName('citytest');
+def buildJob = Jenkins.instance.getItemByFullName('citytest-uniquetoken');
 return getAllBuildNumbers(buildJob)
 ----
 
 . Under +Build Environment+, select +Generic-Artifactory Integration+.
 * Select your Artifactory server.
-* Select +ext-releases_local+ as the +Target Respoitory+.
+* Select +ext-releases_local+ as the +Target Repository+.
 +
-Resolved Artifacts:: `libs-releases-local:citytest/${BUILD_VERSION}/*=>artifacts`
+Resolved Artifacts:: `libs-releases-local:citytest-uniquetoken/${BUILD_VERSION}/*=>artifacts`
 +
 * Ensure +Capture and Publish Build Info+ is checked.
 
