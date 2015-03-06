@@ -49,6 +49,10 @@ Password:: the encrypted password you copied a moment ago
 
 == Create the Initial Build Job
 
+. Navigate back to Jenkins Home (http://pivotal-cloudbees.apj.fe.pivotal.io).
+
+. Login with your PCF account.
+
 . Click +New Job+, give it the name +citytest-uniquetoken+ and select ``Build a free-style software project.'' Then
 click +OK+. Replace in the script below +uniquetoken+ with something like your username!
 
