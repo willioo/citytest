@@ -16,20 +16,6 @@ $ git clone https://github.com/<YOUR_GIT_USERNAME>/citytest
 $ cd citytest
 ----
 
-. Login to your Jenkins instance at CloudBees.
-
-. Navigate to +Manage Jenkins > Manage Plugins > Available+.
-
-. Install the following plugins:
-+
-* Gradle
-* Mask Passwords
-* Extensible Choice Parameter Plugin
-* Artifactory Plugin
-* Parameterized Trigger Plugin
-+
-When you do, tell Jenkins to restart after plugin install.
-
 . Login to your Aritfactory Online instance.
 
 . Navigate to +Admin > Security > General+.
@@ -54,15 +40,12 @@ When you do, tell Jenkins to restart after plugin install.
 
 . Copy your encrypted password and paste it somewhere safe.
 
-. Next, go back to Jenkins. And navigate to +Manage Jenkins > Configure System+.
-
-. Find Artifactory, and add a new Artifactory server:
+. Next, send your artifactory details to the CF Jenkins admin (Carlos Queiroz).
 +
-URL:: `https://<<your artifactory hostname>>.artifactoryonline.com/<<your artifactory hostname>>` (e.g. +https://mattstine.artifactoryonline.com/mattstine+)
+URL:: `https://<<your artifactory hostname>>.artifactoryonline.com/<<your artifactory hostname>>` (e.g.
++https://cqueiroz.artifactoryonline.com/cqueiroz+)
 Username:: the user you created in artifactory
 Password:: the encrypted password you copied a moment ago
-
-. Click +Apply+. Then click +Test Connection+ and ensure things are working.
 
 == Create the Initial Build Job
 
