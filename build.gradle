@@ -15,7 +15,7 @@ allprojects {
     if (project.hasProperty('buildversion')) {
         project.version = project.buildversion
     } else {
-        project.version = '1.0'
+        project.version = '1.1'
     }
 }
 
@@ -61,7 +61,7 @@ cloudfoundry {
 
 jar {
     baseName = 'citytest'
-    version =  '1.0'
+    version =  '1.1'
 }
 
 repositories {
