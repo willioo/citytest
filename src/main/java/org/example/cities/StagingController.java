@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StagingController {
 
-    @RequestMapping("/")
+    @RequestMapping("/staging")
     public String index() {
         String timestamp = System.getProperty("staging.timestamp");
         return "Application was staged at: " + timestamp;
