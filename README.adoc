@@ -133,7 +133,7 @@ Command::
 +
 [source,bash]
 ----
-!#/bin/bash
+#!/bin/bash
 wget http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-linux-amd64.tgz
 tar -zxvf cf-linux-amd64.tgz
 ./cf --version
@@ -145,7 +145,8 @@ ROUTE_VERSION=$(echo "${BUILD_VERSION}" | cut -d"." -f1-3 | tr '.' '-')
 echo "Deployed Version: $DEPLOYED_VERSION"
 echo "Route Version: $ROUTE_VERSION"
 
-./cf push "cities-$BUILD_VERSION" -i 1 -m 512M -n "cities-$ROUTE_VERSION-uniquetoken" -d cfapps.io -p artifacts/citytest-${BUILD_VERSION}.jar --no-manifest
+./cf push "cities-$BUILD_VERSION" -i 1 -m 512M -n "cities-$ROUTE_VERSION-uniquetoken" -d cfapps.io -p
+artifacts/citytest-uniquetoken-${BUILD_VERSION}.jar --no-manifest
 ./cf map-route "cities-${BUILD_VERSION}" cfapps.io -n cities-uniquetoken
 ./cf scale cities-${BUILD_VERSION} -i 2
 if [ ! -z "$DEPLOYED_VERSION" -a "$DEPLOYED_VERSION" != " " -a "$DEPLOYED_VERSION" != "cities-${BUILD_VERSION}" ]; then
@@ -168,11 +169,11 @@ fi
 
 == Create the Trigger
 
-. Return to the +citytest+ project and click +Configure+.
+. Return to the +citytest-unitoken+ project and click +Configure+.
 
 . Under +Post Build Actions+ add a post-build action, selecting +Trigger parameterized build on other projects+.
 +
-Projects to build:: +citytest-deploy+
+Projects to build:: +citytest-deploy-unitoken+
 Predefined parameters:: +BUILD_VERSION=$BUILD_NUMBER+
 
 . Save the config and try running the build by clicking ``Build Now''. You should see both builds executed coupled with a zero-downtime deploy of the app to Cloud Foundry.
