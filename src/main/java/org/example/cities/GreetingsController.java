@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingsController {
 
-    @RequestMapping("/greetings")
+    @RequestMapping("/")
     public String index() {
         return "Greetings HK Roadshow!";
     }
