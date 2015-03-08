@@ -173,7 +173,7 @@ fi
 
 . Under +Post Build Actions+ add a post-build action, selecting +Trigger parameterized build on other projects+.
 +
-Projects to build:: +citytest-deploy-unitoken+
+Projects to build:: +citytest-unitoken-deploy+
 Predefined parameters:: +BUILD_VERSION=$BUILD_NUMBER+
 
 . Save the config and try running the build by clicking ``Build Now''. You should see both builds executed coupled with a zero-downtime deploy of the app to Cloud Foundry.
