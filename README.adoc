@@ -138,7 +138,7 @@ Command::
 cf --version
 cf login -a https://api.run.pivotal.io -u <<Your PWS Username>>> -p ${CF_PASSWORD} -o <<Your PWS Org>> -s <<Your PWS Space>>
 
-DEPLOYED_VERSION_CMD=$(CF_COLOR=false ./cf apps | grep 'cities-' | cut -d" " -f1)
+DEPLOYED_VERSION_CMD=$(CF_COLOR=false cf apps | grep 'cities-' | cut -d" " -f1)
 DEPLOYED_VERSION="$DEPLOYED_VERSION_CMD"
 ROUTE_VERSION=$(echo "${BUILD_VERSION}" | cut -d"." -f1-3 | tr '.' '-')
 echo "Deployed Version: $DEPLOYED_VERSION"
