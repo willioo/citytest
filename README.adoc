@@ -90,7 +90,8 @@ Tasks:: +clean assemble+
 
 . Check +This build is parameterized+.
 
-. Click +Add Parameter+ and choose +Extensible Choice+.
+. Click +Add Parameter+ and choose +Extensible Choice+. Make sure to click on the arrow pointing down to allow
+multiple lines
 +
 Name:: +BUILD_VERSION+
 Description:: +The citytest build to promote.+
