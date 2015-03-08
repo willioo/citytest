@@ -127,7 +127,8 @@ Resolved Artifacts:: `libs-releases-local:citytest-uniquetoken/${BUILD_VERSION}/
 Name:: +CF_PASSWORD+
 Password:: Your Pivotal Web Services Password
 
-. Under +Build+, add a +Execute Shell+ build step. Replace in the script below +uniquetoken+ with something like your username!
+. Under +Build+, add a +Execute Shell+ build step. Remember to replace in the script below +uniquetoken+ with something
+like your username!
 +
 Command::
 +
