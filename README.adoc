@@ -16,6 +16,25 @@ $ git clone https://github.com/<YOUR_GIT_USERNAME>/citytest
 $ cd citytest
 ----
 
+Login to your Jenkins instance at CloudBees. (if using Cloud Jenkins).
+
+Navigate to Manage Jenkins > Manage Plugins > Available.
+
+Install the following plugins:
+
+Gradle
+
+Mask Passwords
+
+Extensible Choice Parameter Plugin
+
+Artifactory Plugin
+
+Parameterized Trigger Plugin
+
+When you do, tell Jenkins to restart after plugin install.
+
+
 . Login to your Aritfactory Online instance.
 
 . Navigate to +Admin > Security > General+.
