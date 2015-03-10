@@ -136,28 +136,36 @@ Command::
 [source,bash]
 ----
 #!/bin/bash
+PIVOTAL_WEB_SERVICE_USERNAME="<<<YOUR PWS Username >>>"
+PIVOTAL_WEB_SERVICE_ORGANIZATION="<<<YOUR PWS Organization>>>"
+PIVOTAL_WEB_SERVICE_SPACE="<<<YOUR PWS Space>>>"
+YOUR_UNIQUE_TOKEN="<<< Give a nice unique name for your App>>>"
 
 cf --version
-cf login -a https://api.run.pivotal.io -u <<Your PWS Username>>> -p ${CF_PASSWORD} -o <<Your PWS Org>> -s <<Your PWS Space>>
+cf login -a https://api.run.pivotal.io -u ${PIVOTAL_WEB_SERVICE_USERNAME} -p ${CF_PASSWORD} -o ${PIVOTAL_WEB_SERVICE_ORGANIZATION} -s ${PIVOTAL_WEB_SERVICE_SPACE}
 
-DEPLOYED_VERSION_CMD=$(CF_COLOR=false cf apps | grep 'cities-uniquetoken-' | cut -d" " -f1)
+DEPLOYED_VERSION_CMD=$(CF_COLOR=false cf apps | grep 'cities-${YOUR_UNIQUE_TOKEN}-' | cut -d" " -f1)
 DEPLOYED_VERSION="$DEPLOYED_VERSION_CMD"
 ROUTE_VERSION=$(echo "${BUILD_VERSION}" | cut -d"." -f1-3 | tr '.' '-')
 echo "Deployed Version: $DEPLOYED_VERSION"
 echo "Route Version: $ROUTE_VERSION"
 
-cf push "cities-uniquetoken-$BUILD_VERSION" -i 1 -m 512M -n "cities-uniquetoken-$ROUTE_VERSION" -d cfapps.io -p
-artifacts/citytest-${BUILD_VERSION}.jar --no-manifest
-cf map-route "cities-uniquetoken-${BUILD_VERSION}" cfapps.io -n cities-uniquetoken
-cf scale cities-uniquetoken-${BUILD_VERSION} -i 2
-if [ ! -z "$DEPLOYED_VERSION" -a "$DEPLOYED_VERSION" != " " -a "$DEPLOYED_VERSION" != "cities-uniquetoken-${BUILD_VERSION}" ]; then
+cf push "cities-${YOUR_UNIQUE_TOKEN}-$BUILD_VERSION" -i 1 -m 512M -n "cities-${YOUR_UNIQUE_TOKEN}-$ROUTE_VERSION" -d cfapps.io -p artifacts/citytest-${BUILD_VERSION}.jar --no-manifest
+
+echo "Is artifacts/citytest-${BUILD_VERSION}.jar exists?"
+pwd
+ls -l artifacts/citytest-${BUILD_VERSION}.jar
+
+cf map-route "cities-${YOUR_UNIQUE_TOKEN}-${BUILD_VERSION}" cfapps.io -n cities-${YOUR_UNIQUE_TOKEN}
+cf scale cities-${YOUR_UNIQUE_TOKEN}-${BUILD_VERSION} -i 2
+if [ ! -z "$DEPLOYED_VERSION" -a "$DEPLOYED_VERSION" != " " -a "$DEPLOYED_VERSION" != "cities-${YOUR_UNIQUE_TOKEN}-${BUILD_VERSION}" ]; then
   echo "Performing zero-downtime cutover to $BUILD_VERSION"
   while read line
   do
-    if [ ! -z "$line" -a "$line" != " " -a "$line" != "cities-uniquetoken-${BUILD_VERSION}" ]; then
+    if [ ! -z "$line" -a "$line" != " " -a "$line" != "cities-${YOUR_UNIQUE_TOKEN}-${BUILD_VERSION}" ]; then
       echo "Scaling down, unmapping and removing $line"
       cf scale "$line" -i 1
-      cf unmap-route "$line" cfapps.io -n cities-uniquetoken
+      cf unmap-route "$line" cfapps.io -n cities-${YOUR_UNIQUE_TOKEN}
       cf delete "$line" -f
     else
       echo "Skipping $line"
